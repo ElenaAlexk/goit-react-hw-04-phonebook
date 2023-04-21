@@ -58,10 +58,10 @@ export const App = () => {
         });
   };
 
-  const deleteContact = contactId => {
+  const deleteContact = id => {
     //this.setState(prevState => {
     //return {
-    setContacts(contacts.filter(contact => contact.id !== contactId));
+    setContacts(contacts.filter(contact => contact.id !== id));
     //contacts: prevState.contacts.filter(
     //contact => contact.id !== contactId
     //),
@@ -88,7 +88,7 @@ export const App = () => {
       <Filter value={filter} onChange={changeFilter} />
       <ContactList
         deleteContact={deleteContact}
-        contacts={getVisibleContacts}
+        contacts={getVisibleContacts()}
       />
     </div>
   );
