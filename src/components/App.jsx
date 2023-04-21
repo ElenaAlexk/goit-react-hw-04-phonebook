@@ -18,21 +18,6 @@ export const App = () => {
 
   const [filter, setFilter] = useState('');
 
-  //componentDidMount() {.
-  //const contactsSaved = localStorage.getItem('contacts');
-  //const parsedContacts = JSON.parse(contactsSaved);
-  //if (parsedContacts !== null) {
-  //this.setState({ contacts: parsedContacts });
-  //}
-  //}
-
-  //componentDidUpdate(prevProps, prevState) {
-  //if (this.state.contacts !== prevState.contacts) {
-  //console.log('обновились контакты');
-  //localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //}
-  //}
-
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
@@ -51,21 +36,11 @@ export const App = () => {
         contact.number.trim() === newContact.number.trim()
     ).length
       ? alert(`${newContact.name}: is already in contacts`)
-      : setContacts(({ contacts }) => {
-          return {
-            contacts: [newContact, ...contacts],
-          };
-        });
+      : setContacts([newContact, ...contacts]);
   };
 
   const deleteContact = id => {
-    //this.setState(prevState => {
-    //return {
     setContacts(contacts.filter(contact => contact.id !== id));
-    //contacts: prevState.contacts.filter(
-    //contact => contact.id !== contactId
-    //),
-    //};
   };
 
   const changeFilter = event => {
@@ -73,13 +48,11 @@ export const App = () => {
   };
 
   const getVisibleContacts = () => {
-    //const { filter, contacts } = this.state;
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
-  //const visibleContacts = this.getVisibleContacts();
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
